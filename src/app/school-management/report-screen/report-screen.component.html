@@ -1,0 +1,22 @@
+
+<h2 style="text-align: center;color:blue">Report Screen</h2>
+<h3 style="text-align: center;color:blue">Kindly filter out for each student data</h3>
+<form [formGroup]="form" style="text-align: center;color:blue">
+  <mat-form-field appearance="outline">
+    <mat-label>Search Student</mat-label>
+    <input type="text"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           formControlName="student" (focusout)="getChart()">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="getStudentName($event)">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value" >
+        {{option.value}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<div class="chartContainer">
+<canvas id="myChart"  style="text-align: center;color:blue"></canvas>
+</div>

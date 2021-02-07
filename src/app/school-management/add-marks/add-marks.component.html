@@ -1,0 +1,91 @@
+
+
+<div class="content">
+  <mat-card>
+    <h2 style="text-align: center;color:blue"> Enter Semester II Exam Results</h2>
+  <form class="container" [formGroup]="studentForm" style="text-align: center;color:blue">
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+  <mat-label>School Name:</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-label>Search School</mat-label>
+    <input type="text"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto"
+           formControlName="school_name" #schoolInput >
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="getStudent($event)">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value">
+        {{option.value}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+    <mat-label>Student Name:</mat-label>
+    <mat-form-field appearance="outline">
+      <mat-label>Search Student</mat-label>
+      <input type="text"
+             matInput
+             [formControl]="studentControl"
+             [matAutocomplete]="auto1"
+             formControlName="student_name" >
+      <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" (optionSelected)="getStudentName($event)">
+        <mat-option *ngFor="let option of studentOptions | async" [value]="option.value">
+          {{option.value}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+      <mat-label>Enter marks for English: </mat-label>
+      <mat-form-field appearance="outline">
+        <mat-label>Enter marks for English: </mat-label>
+      <input matInput formControlName="english_marks">
+      <mat-error>This field is required.Accepts only 2 digit numbers</mat-error>
+      </mat-form-field>
+      </div>
+      <p></p>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+        <mat-label>Enter marks for Hindi: </mat-label>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter marks for Hindi: </mat-label>
+        <input matInput formControlName="hindi_marks" >
+        <mat-error>This field is required.Accepts only 2 digit numbers</mat-error>
+        </mat-form-field>
+        </div>
+        <p></p>
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+          <mat-label>Enter marks for Maths: </mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter marks for Maths: </mat-label>
+          <input matInput formControlName="maths_marks">
+          <mat-error>This field is required.Accepts only 2 digit numbers</mat-error>
+          </mat-form-field>
+          </div>
+          <p></p>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+            <mat-label>Enter marks for Science: </mat-label>
+            <mat-form-field appearance="outline">
+              <mat-label>Enter marks for Science: </mat-label>
+            <input matInput formControlName="science_marks">
+            <mat-error>This field is required.Accepts only 2 digit numbers</mat-error>
+            </mat-form-field>
+            </div>
+            <p></p>
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+              <mat-label>Enter marks for Social: </mat-label>
+              <mat-form-field appearance="outline">
+                <mat-label>Enter marks for Social: </mat-label>
+              <input matInput formControlName="social_marks">
+              <mat-error>This field is required.Accepts only 2 digit numbers</mat-error>
+              </mat-form-field>
+              </div>
+              <p></p>
+              <div fxLayout="row">
+                <button mat-raised-button type="submit" style="color:blue"  (click)="addStudent(); clearForm()">Add Student</button>
+              </div>
+
+</form>
+</mat-card>
+</div>

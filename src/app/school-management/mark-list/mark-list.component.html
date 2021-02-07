@@ -1,0 +1,70 @@
+<div class="simple-table-container">
+  <div class="container center">
+  <h2 style="text-align: center;color:blue">Marks List</h2>
+  <h4 style="text-align: center;color:blue">Kindly filter out for each student data</h4>
+</div>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center" style="text-align: center;">
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Search Student</mat-label>
+      <input type="text"
+             matInput
+             [formControl]="myControl"
+             [matAutocomplete]="auto"
+             (keyup)="applyFilter($event.target.value)"
+             formControlName="student">
+      <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value">
+          {{option.value}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+</div>
+<mat-card>
+
+  <mat-table [dataSource]= "dataSource" matSort #table style="text-align: center;">
+
+    <ng-container matColumnDef="student_name" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Student Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.student_name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="school" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> School </th>
+      <td mat-cell *matCellDef="let element"> {{element.school}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="english_marks" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> English  </th>
+      <td mat-cell *matCellDef="let element"> {{element.english_marks}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="hindi_marks" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hindi </th>
+      <td mat-cell *matCellDef="let element"> {{element.hindi_marks}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="maths_marks" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Maths </th>
+      <td mat-cell *matCellDef="let element"> {{element.maths_marks}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="social_marks" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hindi </th>
+      <td mat-cell *matCellDef="let element"> {{element.social_marks}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="science_marks" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Science </th>
+      <td mat-cell *matCellDef="let element"> {{element.science_marks}} </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </mat-table>
+</mat-card>
+</div>
